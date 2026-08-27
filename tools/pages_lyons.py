@@ -353,8 +353,8 @@ home = f"""
       </div>
 
       <div class="quote-card" id="quote">
-        {lead_form("hero-form", "Free estimate, three questions",
-                   "No CAPTCHA. No &ldquo;how did you hear about us?&rdquo; Just tell us about the roof.")}
+        {lead_form("hero-form", "Get a free estimate",
+                   "Tell us what's going on with your roof &mdash; a leak, storm damage, or a roof that's simply had enough.")}
       </div>
     </div>
   </div>
@@ -1064,8 +1064,8 @@ contact = f"""
   <div class="container">
     <p class="breadcrumb"><a href="index.html">Home</a><span>/</span>Contact</p>
     <h1>Get your free estimate</h1>
-    <p>Three questions, no CAPTCHA, and no "how did you hear about us?" before we've even
-    said hello.</p>
+    <p>Three questions is all it takes. We'll come out, get up on the roof, and put a
+    real number in writing.</p>
   </div>
 </section>
 
@@ -1074,7 +1074,7 @@ contact = f"""
     <div>
       <div class="card" style="border-top:4px solid var(--gold-500)">
         {lead_form("contact-form", "Tell us about the roof",
-                   "We'll call you back within one business day. If it's urgent, call us instead &mdash; you'll reach a person.")}
+                   "The more you can tell us, the more useful the first phone call will be.")}
       </div>
 
       <div class="grid grid-2" style="margin-top:26px">

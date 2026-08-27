@@ -224,15 +224,17 @@ def lead_form(form_id, heading, sub, btn="Get My Free Estimate", compact=False):
       <textarea name="details" required placeholder="Leak over the kitchen after last week's storm &mdash; 1940s slate roof in Del Ray."></textarea>
     </label>
 
-    <!-- Honeypot: stops bots without asking a homeowner to solve a puzzle. -->
+    <!-- Honeypot: stops bots without asking a homeowner to solve a puzzle.
+         Deliberately never mentioned in the copy - the absence of friction
+         should be felt, not advertised. -->
     <div class="hp-field" aria-hidden="true">
       <label>Company website <input type="text" name="company_website" tabindex="-1" autocomplete="off"></label>
     </div>
 
     <button class="btn btn-primary btn-block btn-lg" type="submit">{btn}</button>
     <p class="form-note">
-      Three fields, no CAPTCHA, no sales visit required. We'll call you back within
-      one business day &mdash; or call <a href="tel:{PHONE_T}">{PHONE_D}</a> right now.
+      We'll call you back within one business day &mdash; no obligation, no sales visit.
+      Rather talk it through now? Call <a href="tel:{PHONE_T}">{PHONE_D}</a>.
     </p>
   </div>
 </form>
