@@ -20,7 +20,7 @@ Findings from a teardown of the live lyonscontracting.com, in order of cost:
 |---|---|---|
 | 1 | **The phone number is not a link.** Zero `tel:` hrefs sitewide — on mobile, tapping it does nothing. The only fixed element on mobile is a scroll-to-top arrow. | Every number is a real `tel:` link (9 per page) plus a **sticky mobile call bar** on every screen |
 | 2 | **Estimate form has 5 required fields + reCAPTCHA**, including a required "How did you hear about us?" dropdown asked before a stranger with a leaking roof gets any help | **Three fields**, no CAPTCHA (hidden honeypot instead), referral question dropped |
-| 3 | **No photos of their own work.** All 13 homepage images are logos, favicons and award badges | Dedicated gallery + photo blocks on every city page (placeholders, ready for real photos) |
+| 3 | **No photos of their own work.** All 13 homepage images are logos, favicons and award badges | Five of Lyons' own project photos throughout, plus a gallery and photo blocks on every city page |
 | 4 | **No pricing or financing anywhere** | `roof-cost.html` with an instant estimate calculator and a financing section |
 | 5 | **Emergency pages carry no urgency** — no response promise, no after-hours path, hours are M–F 7–7 | `emergency.html` with a what-to-do-now guide and a stated callback commitment |
 | 6 | **Form only on 2 pages** | Lead form on every service and city page, with reviews above it |
@@ -53,51 +53,42 @@ Shared assets: `css/styles.css` (all colors are CSS variables at the top) and
 
 ---
 
-## 3. ⚠️ Placeholders — replace before this goes live
+## 3. What's real, and what still needs Lyons' input
 
-**These are demo stand-ins. Do not publish them as-is.**
+### ✅ Real — sourced, not invented
 
-### a) Reviews are fake
-Every testimonial is marked `PLACEHOLDER — replace with a real Google review`.
-They were written to show the layout. Replace each with a real, verbatim Google
-review and the reviewer's real first name + last initial. **Never publish an
-invented review** — it's a deceptive practice and an FTC issue.
+**The reviews are genuine.** All ten testimonials are real Google reviews published
+verbatim on lyonscontracting.com, with the reviewers' real names: Deborah Brautigam,
+Catherine Steadman, Caryn Thiboheim, Lino Miani, Hassan Aden, Adam Szczypka,
+Rebecca Gould, Kent Rogers, MHL and Tom P. Longer ones are trimmed with an ellipsis;
+wording is otherwise untouched. Worth re-checking against the live Google profile
+before launch, but nothing here is fabricated.
 
-### b) Star-rating schema is commented out
-Each page has an `aggregateRating` block sitting inside an HTML comment with
-`REPLACE_WITH_REAL_COUNT`. Confirm the live rating and review count on the Google
-Business Profile, put the real numbers in, and uncomment it. Publishing a rating
-that doesn't match visible reviews is a Google structured-data violation.
+**The photos are Lyons' own work**, pulled from their Houzz portfolio
+(`houzz.com/professionals/roofing-and-gutters/lyons-contracting-pfvwus-pf~504818024`)
+— uploads they posted themselves, so ownership is clean:
 
-### c) Every photo is a grey placeholder
-Marked with `<!-- NOTE TO OWNER -->` throughout. This is the **highest-value thing
-to fix** — see §5.
+| File | What it shows |
+|---|---|
+| `slate-mansard-copper-dormers-old-town.jpg` | Slate mansard with three hand-fabricated copper oval dormer vents — unmistakably Old Town |
+| `copper-cupola-weathervane.jpg` | Hand-formed copper bell-curve cupola with horse weathervane — the sheet metal shop story in one image |
+| `shingle-copper-bay-alexandria.jpg` | Architectural shingle plus custom copper standing-seam bay roof |
+| `standing-seam-metal-mclean.jpg` | Dark standing seam metal roof with dormers |
+| `flat-membrane-roof-studio.jpg` | White single-ply membrane flat roof on a modern studio |
 
-### d) Calculator prices are estimates, not Lyons' pricing
-The per-square-foot figures in `js/main.js` (`PRICE`, `STORY_MULT`, `COMPLEX_MULT`,
-`TEAR_OFF`) are reasonable Northern Virginia ballparks, not Lyons' actual numbers.
-Replace them with real pricing. The financing figure assumes 120 months at ~9.99% —
-swap in the real lender's terms.
+**Tom Petrilli is named on the About page.** Customers name him repeatedly in their own
+reviews, so the site is built around the thing that's actually working: people trust Tom.
 
-### e) The form doesn't deliver anywhere yet
-Currently falls back to opening the visitor's mail client, addressed to
-`INFO@LYONSCONTRACTING.COM` (a guess — confirm the real lead address).
-See §4a for the 5-minute fix.
+### ⚠️ Still needs Lyons
 
-### f) No financing partner connected
-`roof-cost.html` says financing is available but has no application link.
-Connect a real lender (GreenSky, Hearth, Service Finance, Acorn) or soften the copy.
-
-### g) After-hours arrangement undecided
-`emergency.html` has a `NOTE TO OWNER` about this. Decide what actually happens
-when someone calls at 9pm Saturday — answering service, forwarded mobile, or a
-stated callback window. **Don't promise 24/7 unless someone will answer.**
-
-### h) "25+ years" is used throughout
-Taken from the current site's own claim. Confirm the real founding year and use it —
-a specific year ("since 1997") converts better than a rounded claim.
-
----
+- **Star-rating schema is commented out.** Each page carries an `aggregateRating` block inside an HTML comment with `REPLACE_WITH_REAL_COUNT`. The 4.9 is real (it's on their own site) but the review *count* needs confirming on the Google Business Profile before it's published — a rating that doesn't match visible reviews is a structured-data violation.
+- **A photo of Tom.** `about.html` has a marked slot for `images/tom-petrilli.jpg`. This is the single easiest high-impact addition.
+- **Four gallery slots** on `gallery.html` are still grey placeholders (Rosemont slate valley, Springfield tear-off, Fairfax storm rebuild, Vienna tile). Ask for job photos — they'll have hundreds.
+- **Calculator prices are ballparks, not Lyons' pricing.** The per-square-foot figures in `js/main.js` (`PRICE`, `STORY_MULT`, `COMPLEX_MULT`, `TEAR_OFF`) are reasonable Northern Virginia numbers. Replace with real ones. The financing figure assumes 120 months at ~9.99% — swap in the lender's actual terms.
+- **The form doesn't deliver anywhere yet.** Falls back to the visitor's mail client at `INFO@LYONSCONTRACTING.COM` (a guess — confirm the real lead address). See §4a.
+- **No financing partner connected.** `roof-cost.html` says financing is available but has no application link. Connect a lender or soften the copy.
+- **After-hours arrangement undecided.** `emergency.html` has a `NOTE TO OWNER` about this. Decide what happens on a 9pm Saturday call. **Don't promise 24/7 unless someone answers.**
+- **"25+ years"** comes from their own copy. Confirm the real founding year — a specific year converts better than a rounded claim.
 
 ## 4. Three things to do before going live
 
@@ -173,10 +164,11 @@ then open `http://localhost:8000`.
 - 9 `tel:` links per page, 0 on the current live site
 - All JSON-LD blocks parse as valid JSON
 - All internal links resolve — no 404s
+- Every referenced image file exists — no broken images
 - No horizontal overflow at 375px
 - All tap targets ≥ 44px
 - Single `<h1>` per page
-- No images missing `alt`
+- Every image has descriptive alt text naming the work and the city
 
 ---
 

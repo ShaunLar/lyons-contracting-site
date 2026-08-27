@@ -47,27 +47,95 @@ def roof_type_cards():
     return "".join(out)
 
 
-# NOTE TO OWNER: these are placeholder reviews written for the demo. Before this
-# site goes live, replace every one with a real, verbatim Google review and the
-# reviewer's real first name + last initial. Do not publish invented reviews.
+# Real Google reviews, published verbatim on lyonscontracting.com. Long ones are
+# trimmed with an ellipsis; wording is otherwise untouched. Locations appear only
+# where the reviewer states one.
+# NOTE TO OWNER: verify each against your live Google profile before launch, and
+# add more as they come in.
 TESTIMONIALS = [
-    ("Our 1920s slate roof had been patched by three different companies. Lyons was "
-     "the first to climb up, photograph the actual failure, and tell us honestly which "
-     "sections could be saved. They saved about two-thirds of the original slate.",
-     "PLACEHOLDER — replace with a real Google review", "Old Town Alexandria"),
-    ("Storm took shingles off the back slope on a Friday. They had a tarp on it that "
-     "evening and the full replacement scheduled inside two weeks. The crew cleaned up "
-     "so well I couldn't tell where they'd staged materials.",
-     "PLACEHOLDER — replace with a real Google review", "Arlington"),
-    ("The estimate was one page, itemised, and it was the number we actually paid. "
-     "After three other quotes full of asterisks, that alone earned the job.",
-     "PLACEHOLDER — replace with a real Google review", "McLean"),
+    ("Tom is my go-to roofing guy: responsive, professional, local, quick, reasonably "
+     "priced and excellent quality. This time his team did a gorgeous copper seamed roof "
+     "over a DR bump out. My bungalow has a little bling! My neighbor also uses Lyons "
+     "Contracting and said Tom's proposal was the lowest price and best quality of all six. "
+     "I didn't bother getting other proposals. I know Tom is going to be fair and stand by "
+     "his work.",
+     "Deborah Brautigam", "Google review &middot; Del Ray"),
+
+    ("Tom is responsive, professional and honest. I have worked with Lyons at both of my "
+     "homes, one of which was a 60 year old slate roof. Recently, we neglected to promptly "
+     "clean our gutters and it caused water to sit on our roof line. Tom came out the next "
+     "morning and quickly assessed the situation. He informed us that we did not have a "
+     "larger roof issue and gave us practical advice instead of a bill. This is only my "
+     "second google review, but when you are lucky enough to find good partner it is worth "
+     "sharing. I highly recommend Tom and Lyons!",
+     "Catherine Steadman", "Google review"),
+
+    ("I had been dealing with another company but it took them three visits, a hole cut in "
+     "my ceiling, and three weeks to give me a quote. When I reached out to Tom late on a "
+     "Friday he responded right away and scheduled an appointment for the following Monday&hellip; "
+     "Although his quote was twice as much as the first company's, Tom's quote was for a full "
+     "replacement and not the band-aid the other company was proposing&hellip; And now I don't "
+     "have to worry about my roof for another 20+ years!",
+     "Caryn Thiboheim", "Google review &middot; Alexandria"),
+
+    ("Lyons installed my roof in 2015, and it was a great experience! I've had no trouble "
+     "since&hellip; they seemed especially experienced with the flat, rubber-membrane roofs "
+     "that are so common in Alexandria. UPDATE: My neighbor replaced his upper roof and we "
+     "went in on replacing our shared porch roof. Everything went seamlessly, from the "
+     "estimate to the installation. I learned today that Tom has employed the same 10 people "
+     "for 16 years &mdash; which says a lot if you're concerned about how the contractors you "
+     "hire treat their employees.",
+     "MHL", "Google review &middot; Alexandria"),
+
+    ("Tom and the company were very professional throughout the entire process. He never "
+     "tried to up sell any materials or unnecessary services&hellip; The crew showed up on time "
+     "on the scheduled day and went straight to work. Throughout the workday, they answered "
+     "any questions we had. They were very professional, courteous, and friendly. I can't "
+     "commend him and the crew enough. I highly recommend them.",
+     "Lino Miani", "Google review"),
+
+    ("Lyons Contracting did an amazing job inspecting, and replacing our roof. There were "
+     "many complex issues/problems with the roof that warranted a full replacement. Tom took "
+     "the time to discuss the options and answered my questions in a way that made me very "
+     "comfortable with our decision. Tom obtained the permits necessary to do the work and we "
+     "navigated winter weather to get it scheduled. His crew was extremely professional, "
+     "punctual and performed flawlessly.",
+     "Hassan Aden", "Google review"),
+
+    ("Tom Petrilli and his crew did a great job in replacing my flat/low-slopped roof in "
+     "Alexandria at a very fair price&hellip; Tom was in constant communication with me during "
+     "the entirety of the process and answered all my questions. He provided video and picture "
+     "updates of anything him and his crew noticed or worked on which I really appreciated. "
+     "They also made sure to clean up not only my, but my neighbors properties of any debris.",
+     "Tom P.", "Google review &middot; Alexandria"),
+
+    ("Very professional and the only quote we could obtain that would actually reengineer the "
+     "poorly designed awning on the house we just bought. At least 2 layers of completely "
+     "rotten code violation are no longer attached to our house. All the work done in one day "
+     "and I'm fully confident we'll have no more water damage. Updates throughout the day with "
+     "pictures so that I don't have to climb up there to inspect.",
+     "Adam Szczypka", "Google review"),
+
+    ("I was pleasantly surprised at the quote, I was expecting something over inflated given "
+     "that this is NOVA and it's post-covid, but the final price was 100% fair given the size "
+     "of my roof. The crew came out and worked 9+ hours a day to finish the project including "
+     "replacing sections of the roof deck where there had been water damage. And they cleaned "
+     "everything up, there was no trace that they had even been here.",
+     "Rebecca Gould", "Google review"),
+
+    ("Tom, the manager, was very responsive, explained everything in detail and patiently "
+     "answered all my questions. I observed his installation team closely &mdash; they were "
+     "extremely diligent in their work and went out of their way to clean up the old roof "
+     "materials. I am highly satisfied with their work and I absolutely recommend Lyons "
+     "Contracting for any type of roof replacement.",
+     "Kent Rogers", "Google review"),
 ]
 
 
-def testimonials(limit=3):
+def testimonials(limit=3, start=0):
     out = []
-    for quote, who, where in TESTIMONIALS[:limit]:
+    picks = (TESTIMONIALS * 2)[start:start + limit]
+    for quote, who, where in picks:
         out.append(f"""
       <div class="testi reveal">
         <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
@@ -77,32 +145,50 @@ def testimonials(limit=3):
     return "".join(out)
 
 
-# NOTE TO OWNER: every tile below is a grey placeholder. Drop real job photos into
-# /images and swap the <div class="tile"> for <img src="images/…" alt="…" loading="lazy">.
+# Real Lyons Contracting project photos, pulled from the company's own Houzz
+# portfolio (houzz.com/professionals/.../lyons-contracting) — their uploads, their work.
+# Entries with img=None are still grey placeholders awaiting more photos from Lyons.
 GALLERY = [
-    ("Slate restoration", "Old Town Alexandria"),
-    ("Standing seam copper", "McLean"),
-    ("GAF architectural shingle", "Del Ray, Alexandria"),
-    ("EPDM flat roof", "Arlington"),
-    ("Slate &amp; copper valley repair", "Rosemont, Alexandria"),
-    ("Full tear-off &amp; replacement", "West Springfield"),
-    ("Custom fabricated metal bay roof", "Falls Church"),
-    ("Storm damage rebuild", "Fairfax"),
-    ("Tile underlayment renewal", "Vienna"),
+    ("slate-mansard-copper-dormers-old-town.jpg",
+     "Slate mansard &amp; copper dormer vents", "Old Town Alexandria",
+     "Slate mansard roof with three hand-fabricated copper oval dormer vents on a historic Old Town Alexandria home"),
+    ("copper-cupola-weathervane.jpg",
+     "Hand-fabricated copper cupola", "Our sheet metal shop",
+     "Hand-fabricated copper bell-curve cupola roof with a horse weathervane, made in the Lyons Contracting sheet metal shop"),
+    ("shingle-copper-bay-alexandria.jpg",
+     "Architectural shingle &amp; copper bay roof", "Northern Virginia",
+     "New architectural shingle roof with a custom copper standing-seam bay window roof on a brick ranch in Northern Virginia"),
+    ("standing-seam-metal-mclean.jpg",
+     "Standing seam metal roof", "McLean",
+     "Dark standing seam metal roof with dormers on a large Northern Virginia home, installed by Lyons Contracting"),
+    ("flat-membrane-roof-studio.jpg",
+     "Single-ply membrane flat roof", "Alexandria",
+     "White single-ply membrane flat roof on a modern backyard studio in Alexandria VA"),
+    (None, "Slate &amp; copper valley repair", "Rosemont, Alexandria", None),
+    (None, "Full tear-off &amp; replacement", "West Springfield", None),
+    (None, "Storm damage rebuild", "Fairfax", None),
+    (None, "Tile underlayment renewal", "Vienna", None),
 ]
 
 
-def gallery_tiles(limit=None):
-    items = GALLERY[:limit] if limit else GALLERY
+def gallery_tiles(limit=None, start=0, real_only=False):
+    pool = [g for g in GALLERY if g[0]] if real_only else GALLERY
+    items = (pool * 3)[start:start + limit] if limit else pool
     out = []
-    for what, where in items:
-        out.append(f"""
+    for img, what, where, alt in items:
+        if img:
+            inner = ('<img src="images/%s" alt="%s" loading="lazy" decoding="async" width="1200" height="800">'
+                     % (img, alt))
+        else:
+            inner = ('<!-- NOTE TO OWNER: replace with a real photo of this job -\n'
+                     '             <img src="images/your-photo.jpg" alt="%s in %s" loading="lazy"> -->\n'
+                     '        <span class="ph-label">%s<br><span class="muted">%s</span></span>'
+                     % (what, where, what, where))
+        out.append("""
       <figure class="tile reveal" style="margin:0">
-        <!-- NOTE TO OWNER: replace with a real photo —
-             <img src="images/your-photo.jpg" alt="{what} in {where}" loading="lazy"> -->
-        <span class="ph-label">{what}<br><span class="muted">{where}</span></span>
-        <figcaption class="tile-cap">{what} &middot; {where}</figcaption>
-      </figure>""")
+        %s
+        <figcaption class="tile-cap">%s &middot; %s</figcaption>
+      </figure>""" % (inner, what, where))
     return "".join(out)
 
 
@@ -233,7 +319,7 @@ def why_us():
         </ul>
       </div>
       <div class="grid" style="gap:18px">
-        {gallery_tiles(4)}
+        {gallery_tiles(4, 0, real_only=True)}
       </div>
     </div>
   </div>
@@ -341,7 +427,7 @@ home = f"""
       <h2>Roofs we've done, on streets you know</h2>
       <p class="lead center">A badge proves we're legitimate. A photograph proves we're good.</p>
     </div>
-    <div class="gallery-grid">{gallery_tiles(6)}</div>
+    <div class="gallery-grid">{gallery_tiles(5, 0, real_only=True)}</div>
     <p class="center" style="margin-top:32px">
       <a class="btn btn-ghost btn-lg" href="gallery.html">See the full gallery</a>
     </p>
@@ -859,7 +945,7 @@ gallery = f"""
       <p class="eyebrow">Reviews</p>
       <h2>What homeowners said afterwards</h2>
     </div>
-    <div class="grid grid-3">{testimonials()}</div>
+    <div class="grid grid-3">{testimonials(3, 3)}</div>
   </div>
 </section>
 
@@ -894,6 +980,19 @@ about = f"""
       from a shop on Eisenhower Avenue in Alexandria. In that time the area has filled up with
       roofing companies that appear after a storm and disappear before the warranty matters.
       We're still here, at the same address, with the same phone number.</p>
+
+      <h2>You'll deal with Tom</h2>
+      <p>Tom Petrilli runs Lyons Contracting, and he's the one who comes out to look at your
+      roof. Not a commissioned salesman working from a script &mdash; the person whose name is on
+      the company. Read our Google reviews and you'll notice how many of them are about him by
+      name: responding on a Friday evening, showing up the next morning, sending photographs
+      from the roof, and more than once telling a homeowner they didn't need the work.</p>
+      <p>The crew is just as settled. As one customer put it in their review:
+      <em>&ldquo;I learned today that Tom has employed the same 10 people for 16 years &mdash;
+      which says a lot if you're concerned about how the contractors you hire treat their
+      employees.&rdquo;</em></p>
+      <!-- NOTE TO OWNER: a photo of Tom belongs right here. Drop it in as
+           <img src="images/tom-petrilli.jpg" alt="Tom Petrilli, owner of Lyons Contracting"> -->
 
       <h2>The sheet metal shop</h2>
       <p>This is the part that makes us different, and it's genuinely unusual. We fabricate our
@@ -945,7 +1044,7 @@ about = f"""
       <p class="eyebrow">Reviews</p>
       <h2>4.9 on Google</h2>
     </div>
-    <div class="grid grid-3">{testimonials()}</div>
+    <div class="grid grid-3">{testimonials(3, 6)}</div>
   </div>
 </section>
 
@@ -1172,7 +1271,7 @@ CITY_CONTENT = {
 }
 
 
-def city_page(slug, name):
+def city_page(slug, name, idx=0):
     c = CITY_CONTENT[slug]
     hoods = ", ".join(c["hoods"][:-1]) + " and " + c["hoods"][-1]
     others = "".join(
@@ -1236,7 +1335,7 @@ def city_page(slug, name):
 
       <h2>Recent work near {name}</h2>
       <div class="gallery-grid" style="grid-template-columns:repeat(3,1fr);margin-top:18px">
-        {gallery_tiles(3)}
+        {gallery_tiles(3, idx, real_only=True)}
       </div>
       <!-- NOTE TO OWNER: swap these for three real photos of jobs in {name}.
            Local photos on a local page are worth far more than stock ones. -->
@@ -1261,7 +1360,7 @@ def city_page(slug, name):
       <p class="eyebrow">Reviews</p>
       <h2>What Northern Virginia homeowners said</h2>
     </div>
-    <div class="grid grid-3">{testimonials()}</div>
+    <div class="grid grid-3">{testimonials(3, idx)}</div>
   </div>
 </section>
 
@@ -1298,8 +1397,8 @@ def city_page(slug, name):
          body, active="index.html", extra_ld=extra)
 
 
-for slug, name in CITIES:
-    city_page(slug, name)
+for _i, (slug, name) in enumerate(CITIES):
+    city_page(slug, name, _i)
 
 
 # --------------------------------------------------------------------------

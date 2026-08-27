@@ -14,7 +14,7 @@ PHONE_D = "703-299-8888"
 PHONE_T = "+17032998888"
 STREET = "4930 A Eisenhower Ave"
 CITY, REGION, ZIP = "Alexandria", "VA", "22304"
-HOURS = "Mon–Fri, 7:00 AM– 7:00 PM"
+HOURS = "Mon–Fri, 7:00 AM – 7:00 PM"
 TODAY = "2026-08-27"
 
 CITIES = [
@@ -60,6 +60,10 @@ def icon(name):
 
 
 def head(title, desc, slug, extra_ld=""):
+    # Normalise first: callers write either "&" or "&amp;"; escaping a
+    # pre-escaped string yields "&amp;amp;", which Google renders literally.
+    title = html.unescape(title)
+    desc = html.unescape(desc)
     canon = f"{SITE}/" if slug == "index.html" else f"{SITE}/{slug}"
     ld = f""" <script type="application/ld+json">
 {{
