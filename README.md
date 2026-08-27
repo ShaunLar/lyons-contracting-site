@@ -10,6 +10,18 @@ that runs on any host.
 > **This is a demo.** Several things on it are deliberately placeholders and must be
 > replaced before it goes anywhere near a live domain. See §3.
 
+> ## 🚫 NOINDEX IS ON — remove it before this goes live
+>
+> This repo is public and served from GitHub Pages, so every page carries
+> `<meta name="robots" content="noindex, nofollow">` and `robots.txt` has
+> `Disallow: /`. That stops Google indexing a public copy of Lyons' reviews and
+> photos as a near-duplicate of lyonscontracting.com.
+>
+> **Leaving it on when the site goes live on their real domain would make the
+> entire site invisible to Google.** To remove: set `DEMO_NOINDEX = False` in
+> `tools/build_lyons.py` and re-run `python3 tools/pages_lyons.py`, or delete the
+> meta tag from all 16 pages and restore `robots.txt` by hand.
+
 ---
 
 ## 1. Why this site exists — what the current site is losing

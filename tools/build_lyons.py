@@ -17,6 +17,20 @@ CITY, REGION, ZIP = "Alexandria", "VA", "22304"
 HOURS = "Mon–Fri, 7:00 AM – 7:00 PM"
 TODAY = "2026-08-27"
 
+# ===========================================================================
+# DEMO GUARD - set to False before Lyons deploys this for real.
+#
+# This is a public demo repo hosted on GitHub Pages. It carries Lyons' own
+# reviews and project photos, so it must not be indexed: Google would treat it
+# as a near-duplicate of lyonscontracting.com and it could compete with their
+# real site. True adds <meta name="robots" content="noindex, nofollow"> to every
+# page and Disallow: / to robots.txt.
+#
+# LEAVING THIS ON when the site goes live on their real domain would make the
+# whole site invisible to Google. Flip it to False and rebuild.
+# ===========================================================================
+DEMO_NOINDEX = True
+
 CITIES = [
     ("alexandria",  "Alexandria"),
     ("arlington",   "Arlington"),
@@ -65,6 +79,9 @@ def head(title, desc, slug, extra_ld=""):
     title = html.unescape(title)
     desc = html.unescape(desc)
     canon = f"{SITE}/" if slug == "index.html" else f"{SITE}/{slug}"
+    # See DEMO_NOINDEX above - remove before this goes live on the real domain.
+    robots_meta = ('<meta name="robots" content="noindex, nofollow">\n  '
+                   if DEMO_NOINDEX else "")
     ld = f""" <script type="application/ld+json">
 {{
   "@context": "https://schema.org",
@@ -127,7 +144,7 @@ def head(title, desc, slug, extra_ld=""):
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{html.escape(title)}</title>
+  {robots_meta}<title>{html.escape(title)}</title>
   <meta name="description" content="{html.escape(desc)}">
   <link rel="canonical" href="{canon}">
 

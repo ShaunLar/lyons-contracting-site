@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Page content for the Lyons Contracting site. Run this file to build."""
-from build_lyons import (page, lead_form, cta_band, icon, AREAS_SECTION,
+from build_lyons import (page, lead_form, cta_band, icon, AREAS_SECTION, DEMO_NOINDEX,
                          PHONE_D, PHONE_T, CITIES, SITE, STREET, CITY, REGION, ZIP, HOURS)
 import os, datetime
 
@@ -1464,7 +1464,14 @@ with open(os.path.join(OUT, "sitemap.xml"), "w") as f:
 """)
 
 with open(os.path.join(OUT, "robots.txt"), "w") as f:
-    f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
+    if DEMO_NOINDEX:
+        # Demo guard - see build_lyons.DEMO_NOINDEX. Remove before going live.
+        f.write("# DEMO SITE - not for indexing.\n"
+                "# Remove this file's Disallow (set DEMO_NOINDEX = False and rebuild)\n"
+                "# before Lyons deploys to their real domain.\n"
+                "User-agent: *\nDisallow: /\n")
+    else:
+        f.write(f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n")
 
 with open(os.path.join(OUT, "site.webmanifest"), "w") as f:
     f.write("""{

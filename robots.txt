@@ -1,4 +1,5 @@
+# DEMO SITE - not for indexing.
+# Remove this file's Disallow (set DEMO_NOINDEX = False and rebuild)
+# before Lyons deploys to their real domain.
 User-agent: *
-Allow: /
-
-Sitemap: https://lyonscontracting.com/sitemap.xml
+Disallow: /
